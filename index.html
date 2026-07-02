@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blockdor Q3 2026 — Strategic Deliverables & ERP Roadmap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#F5F9FA;--hbg:#FCFEFD;--card:#fff;--primary:#0F172A;
+      --sec:#334155;--muted:#64748b;--border:#E2E8F0;
+      --blue:#1E3A8A;--bluelt:#EFF6FF;--bluemid:#BFDBFE;
+      --green:#15803D;--greenlt:#F0FDF4;--greenborder:#86EFAC;
+      --ibg:#F8FAFC;--iborder:#CBD5E1;--ifocus:#3B82F6;--rhover:#F0F7FF;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:var(--bg);color:var(--sec);line-height:1.6;font-family:'Inter',sans-serif;padding-bottom:100px}
+    h1,h2,h3,h4,.logo{font-family:'Outfit',sans-serif;color:var(--primary)}
+
+    /* GATE */
+    #gate-overlay{position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 55%,#1e40af 100%);display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif}
+    #gate-overlay.fade-out{opacity:0;transition:opacity .55s ease;pointer-events:none}
+    .gate-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(24px);border-radius:18px;padding:50px 54px;width:420px;max-width:90vw;text-align:center;box-shadow:0 28px 70px rgba(0,0,0,.55)}
+    .gate-logo{font-family:'Outfit',sans-serif;font-size:30px;font-weight:800;color:#fff;letter-spacing:1px;margin-bottom:4px}
+    .gate-logo span{color:#60A5FA}
+    .gate-tagline{font-size:11.5px;font-weight:600;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:34px}
+    .gate-label{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.65);text-align:left;display:block;margin-bottom:9px}
+    #gate-pw{width:100%;padding:13px 16px;font-size:15px;font-family:'Inter',sans-serif;letter-spacing:2px;background:rgba(255,255,255,.09);border:1.5px solid rgba(255,255,255,.18);border-radius:9px;color:#fff;outline:none;transition:border-color .2s,box-shadow .2s}
+    #gate-pw:focus{border-color:#60A5FA;box-shadow:0 0 0 3px rgba(96,165,250,.22)}
+    #gate-pw::placeholder{color:rgba(255,255,255,.28);letter-spacing:0}
+    #gate-btn{width:100%;margin-top:16px;padding:13px;background:#2563EB;border:none;border-radius:9px;color:#fff;font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s,transform .15s}
+    #gate-btn:hover{background:#1d4ed8;transform:translateY(-1px)}
+    #gate-error{margin-top:14px;font-size:12.5px;color:#FCA5A5;font-weight:500;display:none}
+    #gate-error.show{display:block;animation:gshake .38s ease}
+    @keyframes gshake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+    .gate-footer{margin-top:28px;font-size:11px;color:rgba(255,255,255,.22);line-height:1.6}
+    body.locked header,body.locked .hero,body.locked .main{visibility:hidden}
+
+    /* HEADER */
+    header{background:var(--hbg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;padding:14px 40px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+    .logo{font-size:20px;font-weight:800;letter-spacing:.5px}
+    .logo span{color:var(--blue)}
+    .meta-nav{display:flex;align-items:center;gap:16px;font-size:13px;font-weight:500;color:var(--muted)}
+    .badge-conf{background:#FEE2E2;border:1px solid #FCA5A5;color:#991B1B;font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;text-transform:uppercase}
+
+    /* HERO */
+    .hero{background:#fff;border-bottom:1px solid var(--border);padding:38px 40px;max-width:1440px;margin:0 auto;display:grid;grid-template-columns:2.2fr 1fr;gap:36px}
+    .hero h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:10px}
+    .hero p{font-size:14.5px;color:var(--sec);max-width:800px;margin-bottom:18px}
+    .dl-btns{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{text-decoration:none;padding:9px 20px;font-size:12.5px;font-weight:700;border-radius:6px;transition:all .2s;display:inline-flex;align-items:center;gap:6px;cursor:pointer;border:none}
+    .btn-secondary{background:#fff;border:1px solid var(--border);color:var(--primary)}
+    .btn-secondary:hover{background:#F8FAFC;border-color:#94A3B8;transform:translateY(-2px)}
+    .meta-card{background:#F8FAFC;border:1px solid var(--border);border-radius:10px;padding:20px}
+    .meta-card h3{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:12px;letter-spacing:.5px}
+    .meta-row{margin-bottom:8px}
+    .meta-label{font-size:11px;color:var(--muted)}
+    .meta-val{font-size:13.5px;font-weight:600;color:var(--primary)}
+
+    /* MAIN */
+    .main{max-width:1440px;margin:24px auto 0;padding:0 40px}
+    .tabs-nav{display:flex;flex-wrap:wrap;gap:6px;border-bottom:2px solid var(--border);padding-bottom:10px;margin-bottom:14px}
+    .tab-btn{padding:8px 15px;background:var(--border);border:1px solid #CBD5E1;border-radius:6px;color:var(--sec);font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;font-size:12px;transition:all .18s}
+    .tab-btn:hover{background:#D1D5DB;color:var(--primary)}
+    .tab-btn.active{background:#fff;color:var(--blue);border-color:var(--blue);border-width:1.5px;box-shadow:0 3px 8px rgba(30,58,138,.1)}
+    .tl-btn{color:#0369a1;border-color:#BAE6FD;background:#F0F9FF}
+    .tl-btn.active{background:#fff;border-color:#0369a1;color:#0369a1}
+    .add-btn{color:var(--green);border-color:var(--greenborder);background:var(--greenlt)}
+    .add-btn.active{background:#fff;border-color:var(--green);color:var(--green)}
+    .tab-content{background:#fff;border:1px solid var(--border);border-radius:10px;padding:32px;box-shadow:0 2px 8px rgba(0,0,0,.03)}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block;animation:fadeIn .3s ease}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
+    .section-title{font-size:21px;font-weight:800;margin-bottom:3px}
+    .section-subtitle{font-size:11.5px;font-weight:700;color:var(--muted);margin-bottom:12px;text-transform:uppercase;letter-spacing:.6px}
+    p.desc{font-size:14px;margin-bottom:20px;color:var(--sec)}
+    .info-block{background:#F8FAFC;border-left:4px solid var(--blue);padding:13px 17px;margin-bottom:16px;border-radius:0 6px 6px 0}
+    .info-block h3{font-size:13.5px;font-weight:700;margin-bottom:3px}
+    .info-block p{font-size:13px;color:var(--sec)}
+
+    /* TABLE */
+    table{width:100%;border-collapse:collapse;margin-top:6px}
+    table th,table td{padding:10px 13px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+    table th{background:#F1F5F9;font-weight:700;color:var(--primary);font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+    table tr:hover td{background:var(--rhover)}
+    .id-cell{width:52px;padding-top:13px}
+    .id-cell strong{color:var(--blue);font-size:12.5px}
+    .name-cell{min-width:220px}
+    .input-cell{min-width:100px;vertical-align:middle}
+    .dname{font-size:13.5px;color:var(--primary);display:block;margin-bottom:3px;font-weight:600}
+    .dnotes{font-size:12px;color:var(--muted);line-height:1.5;margin-top:2px}
+    .new-row td{background:#FAFFF7;border-left:3px solid var(--green)}
+
+    /* INPUTS */
+    .field-select,.field-input{width:100%;padding:6px 9px;font-size:12px;background:var(--ibg);border:1px solid var(--iborder);border-radius:5px;color:var(--primary);font-family:'Inter',sans-serif;transition:border-color .15s,box-shadow .15s;appearance:none;-webkit-appearance:none}
+    .field-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;padding-right:26px}
+    .field-select:focus,.field-input:focus{outline:none;border-color:var(--ifocus);box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+    .cost-wrap{display:flex;align-items:center}
+    .cost-prefix{background:#F1F5F9;border:1px solid var(--iborder);border-right:none;border-radius:5px 0 0 5px;padding:6px 8px;font-size:11.5px;color:var(--muted);font-weight:600;flex-shrink:0}
+    .cost-input{border-radius:0 5px 5px 0!important}
+    .priority-high{background:#FFF5F5;border-color:#FCA5A5;color:#991B1B}
+    .priority-medium{background:#FFFBEB;border-color:#FCD34D;color:#92400E}
+    .priority-low{background:#F0FDF4;border-color:#86EFAC;color:#14532D}
+
+    /* ATTACHMENT */
+    .attach-col{min-width:170px;vertical-align:middle}
+    .attach-cell{display:flex;flex-direction:column;gap:5px}
+    .on-file-badge{display:inline-flex;align-items:flex-start;gap:5px;font-size:11px;font-weight:600;color:var(--blue);background:var(--bluelt);border:1px solid var(--bluemid);border-radius:5px;padding:4px 9px;line-height:1.4}
+    .on-file-badge small{font-weight:400;color:var(--muted);display:block}
+    .upload-btn{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;color:#374151;background:#F9FAFB;border:1px dashed #CBD5E1;border-radius:5px;padding:4px 9px;cursor:pointer;transition:all .15s;white-space:nowrap}
+    .upload-btn:hover{background:#F3F4F6;border-color:#9CA3AF}
+    .attached-name{font-size:10.5px;color:var(--green);font-style:italic}
+
+    .cat-badge{background:var(--bluelt);color:var(--blue);border:1px solid var(--bluemid);padding:2px 7px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}
+    .add-task-btn{margin-top:18px;display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:var(--greenlt);border:1.5px dashed var(--greenborder);border-radius:8px;color:var(--green);font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:all .2s}
+    .add-task-btn:hover{background:#dcfce7;border-color:#4ade80;transform:translateY(-1px)}
+
+    /* ── GANTT ── */
+    .gantt-legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:20px}
+    .gantt-legend-item{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--sec)}
+    .gantt-legend-dot{width:12px;height:12px;border-radius:3px}
+    #gantt-container{overflow-x:auto;padding-bottom:16px}
+    .gantt-header-row{display:flex;align-items:stretch;border-bottom:2px solid var(--border);margin-bottom:0}
+    .gantt-label-col{width:240px;min-width:240px;padding:6px 10px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;border-right:1px solid var(--border);flex-shrink:0}
+    .gantt-months{display:flex;flex-shrink:0}
+    .gantt-month{background:#F1F5F9;border-right:1px solid var(--border);text-align:center;padding:7px 4px;font-size:12px;font-weight:700;color:var(--primary);font-family:'Outfit',sans-serif;flex-shrink:0}
+    .gantt-cat-header{display:flex;align-items:center;background:#F8FAFC;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:6px 10px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+    .gantt-row{display:flex;align-items:center;border-bottom:1px solid #F1F5F9;min-height:36px}
+    .gantt-row:hover{background:#F8FAFC}
+    .gantt-row .gantt-label-col{font-size:12px;font-weight:500;color:var(--primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:6px 10px;border-right:1px solid var(--border)}
+    .gantt-track{position:relative;height:36px;flex-shrink:0;overflow:hidden}
+    .gantt-tick{position:absolute;top:0;bottom:0;width:1px;background:rgba(226,232,240,.6);z-index:0}
+    .gantt-today{position:absolute;top:0;bottom:0;width:2px;background:#EF4444;z-index:3}
+    .today-label{position:absolute;top:2px;left:4px;font-size:9px;font-weight:700;color:#EF4444;white-space:nowrap}
+    .gantt-bar{position:absolute;top:50%;transform:translateY(-50%);height:18px;border-radius:4px;cursor:pointer;transition:opacity .15s;z-index:2}
+    .gantt-bar:hover{opacity:.8}
+    .gantt-bar.tbd{opacity:.55;border:1.5px dashed rgba(255,255,255,.5)}
+    .gantt-bar.milestone{width:14px!important;height:14px!important;border-radius:3px;transform:translateY(-50%) rotate(45deg);z-index:4}
+    .bar-label{position:absolute;left:7px;top:50%;transform:translateY(-50%);font-size:10px;font-weight:700;color:#fff;white-space:nowrap;pointer-events:none}
+    .gantt-tip{position:fixed;background:#0F172A;color:#fff;padding:8px 13px;border-radius:7px;font-size:12px;line-height:1.5;pointer-events:none;display:none;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,.3);max-width:280px}
+    .gantt-body{border:1px solid var(--border);border-radius:0 0 8px 8px}
+
+    /* TEAM ADDITIONS */
+    .additions-header{background:linear-gradient(135deg,#F0FDF4,#DCFCE7);border:1px solid var(--greenborder);border-radius:10px;padding:22px;margin-bottom:24px}
+    .additions-header h3{font-size:15px;font-weight:700;color:var(--green);margin-bottom:6px}
+    .additions-header p{font-size:13px;color:#166534}
+    .add-form{background:#F8FAFC;border:1px solid var(--border);border-radius:8px;padding:20px;margin-bottom:20px}
+    .add-form h4{font-size:13px;font-weight:700;margin-bottom:14px;color:var(--primary)}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+    .form-group{display:flex;flex-direction:column;gap:4px}
+    .form-group label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+    .form-group textarea{width:100%;padding:7px 10px;font-size:12.5px;font-family:'Inter',sans-serif;background:var(--ibg);border:1px solid var(--iborder);border-radius:5px;color:var(--primary);resize:vertical;min-height:70px}
+    .submit-btn{padding:10px 28px;background:var(--green);color:#fff;border:none;border-radius:6px;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:all .2s}
+    .submit-btn:hover{background:#166534;transform:translateY(-1px)}
+
+    @media(max-width:1000px){
+      .hero{grid-template-columns:1fr;padding:24px 18px}
+      .main{padding:0 14px}
+      header{padding:12px 18px}
+      .tab-content{padding:18px}
+      .form-grid{grid-template-columns:1fr}
+      .gantt-label-col{width:160px;min-width:160px}
+    }
+  </style>
+</head>
+<body class="locked">
+
+<!-- ── PASSWORD GATE ────────────────────────────────────────────────────── -->
+<div id="gate-overlay">
+  <div class="gate-box">
+    <div class="gate-logo">BLOCKDOR<span>.</span></div>
+    <div class="gate-tagline">Q3 2026 Strategic Roadmap</div>
+    <label class="gate-label" for="gate-pw">Team Access Password</label>
+    <input type="password" id="gate-pw" placeholder="Enter password to continue" autocomplete="current-password">
+    <button id="gate-btn">Unlock Plan &rarr;</button>
+    <div id="gate-error">Incorrect password &mdash; please try again.</div>
+    <div class="gate-footer">Confidential &mdash; Blockdor Inc. &copy; 2026<br>Authorised team members only</div>
+  </div>
+</div>
+<script>
+(function(){
+  var TOKEN="ITYyMDJyb2RrY29sQg==", SK="bdq3_ok";
+  function check(){
+    var pw=document.getElementById("gate-pw").value;
+    var rev=pw.split("").reverse().join("");
+    var b64=btoa(rev);
+    if(b64===TOKEN){
+      sessionStorage.setItem(SK,"1");
+      document.body.classList.remove("locked");
+      var ov=document.getElementById("gate-overlay");
+      ov.classList.add("fade-out");
+      setTimeout(function(){ov.remove();},600);
+    }else{
+      var err=document.getElementById("gate-error");
+      err.classList.remove("show"); void err.offsetWidth; err.classList.add("show");
+      document.getElementById("gate-pw").value="";
+      document.getElementById("gate-pw").focus();
+    }
+  }
+  document.getElementById("gate-btn").addEventListener("click",check);
+  document.getElementById("gate-pw").addEventListener("keydown",function(e){if(e.key==="Enter")check();});
+  if(sessionStorage.getItem(SK)==="1"){
+    document.getElementById("gate-overlay").style.display="none";
+    document.body.classList.remove("locked");
+  }
+})();
+</script>
+
+<header>
+  <div class="logo">BLOCKDOR<span>.</span></div>
+  <div class="meta-nav"><span>Q3 2026 STRATEGIC ROADMAP</span><div class="badge-conf">Confidential</div></div>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Q3 2026 Strategic Deliverables &amp; ERP Roadmap</h1>
+    <p>Comprehensive operations framework covering ERP development, brand &amp; marketing, investor fundraising, and Smartbox hardware.
+       All editable fields are blank for team input except confirmed assignments. Use <strong>📅 Visual Timeline</strong> to see the full scope at a glance.
+       Use <strong>➕ Team Additions</strong> to submit anything missed.</p>
+    <div class="dl-btns">
+      <a href="Blockdor_Q3_2026_Deliverables_Checklist.docx" class="btn btn-secondary">☑ Checklist (.docx)</a>
+      <a href="Blockdor_Q3_2026_Deliverables_Tracker.xlsx" class="btn btn-secondary">📊 Excel Tracker</a>
+    </div>
+  </div>
+  <div class="meta-card">
+    <h3>Plan Metadata</h3>
+    <div class="meta-row"><div class="meta-label">Effective Date</div><div class="meta-val">July 2, 2026</div></div>
+    <div class="meta-row"><div class="meta-label">Status</div><div class="meta-val">Confidential</div></div>
+    <div class="meta-row"><div class="meta-label">Project Lead</div><div class="meta-val">Brook</div></div>
+    <div class="meta-row"><div class="meta-label">Total Deliverables</div><div class="meta-val">21 across 8 categories</div></div>
+  </div>
+</section>
+
+<main class="main">
+  <div class="tabs-nav"><button class="tab-btn active" onclick="switchTab(event,'overview')">Overview</button><button class="tab-btn" onclick="switchTab(event,'cat1')">ERP Stabilization</button><button class="tab-btn" onclick="switchTab(event,'cat2')">ERP Core Features</button><button class="tab-btn" onclick="switchTab(event,'cat3')">Accounting & Finance</button><button class="tab-btn" onclick="switchTab(event,'cat4')">Multi-Entity & FX</button><button class="tab-btn" onclick="switchTab(event,'cat5')">Tax & Legal Compliance</button><button class="tab-btn" onclick="switchTab(event,'cat6')">Design, Brand & Marketing</button><button class="tab-btn" onclick="switchTab(event,'cat7')">Investor Readiness & Data Room</button><button class="tab-btn" onclick="switchTab(event,'cat8')">Smartbox Hardware</button><button class="tab-btn tl-btn" onclick="switchTab(event,'timeline')">📅 Visual Timeline</button><button class="tab-btn add-btn" onclick="switchTab(event,'additions')">➕ Team Additions</button><button class="tab-btn" onclick="switchTab(event,'master')">Master View</button></div>
+  <div class="tab-content">
+
+    <!-- OVERVIEW -->
+    <div id="overview" class="tab-panel active">
+      <h2 class="section-title">Strategic Overview</h2>
+      <p class="section-subtitle">Q3 2026 — Fundraising Readiness &amp; Operational Discipline</p>
+      <p class="desc">Blockdor is a mine finance and mining royalty company. Our immediate priority is raising capital to secure additional royalties, advance our permit portfolio, and acquire and process metal. The ERP is our internal operating system — it makes us look organised, serious, and ready to manage institutional capital.</p>
+      <div class="info-block">
+        <h3>How to use this document</h3>
+        <p>Click a category tab to view your deliverables. Select yourself as Owner, set Priority and Target Date. Use <strong>➕ Attach File</strong> on any row to upload a quotation or supporting document directly in the browser. Items marked "📋 On File" have signed documents already saved in the local project folder.</p>
+      </div>
+      <div class="info-block" style="border-left-color:#15803D">
+        <h3>Critical Path</h3>
+        <p>Brand Guideline Approval (Dawid, today/Wednesday) → Website mock-ups + SIREXE booth design (3–4 weeks) → Website live (8 weeks) → Investor Data Room populated → 2-month fundraising sprint.</p>
+      </div>
+      <div class="info-block" style="border-left-color:#D97706">
+        <h3>Hybrid Strategy — Build, Buy, or Integrate</h3>
+        <p>QuickBooks Online Advanced ($200/mo) for official books, taxes, and reconciliation. DocSend ($150/mo) for the investor data room. Custom ERP only where Blockdor has unique needs: mining royalties, permits, gold inventory, Smartbox traceability, multi-subsidiary structure.</p>
+      </div>
+    </div>
+
+    
+    <div id="cat1" class="tab-panel">
+      <h2 class="section-title">ERP Stabilization</h2>
+      <p class="section-subtitle">Stabilize What Exists</p>
+      <p class="desc">Before expanding scope, the team must assess and stabilize the current platform. Goal: clean, reliable, and demo-ready for investors.</p>
+      <div style="overflow-x:auto"><table id="tbl_cat1">
+        <thead><tr>
+          <th style="width:52px">ID</th><th>Deliverable &amp; Description</th>
+          <th style="width:148px">Owner</th><th style="width:118px">Priority</th>
+          <th style="width:155px">Target Date</th><th style="width:140px">Cost (USD)</th>
+          <th style="width:195px">Quotation / Attachment</th>
+        </tr></thead>
+        <tbody id="tbody_cat1">
+        <tr>
+          <td class="id-cell"><strong>E01</strong></td>
+          <td class="name-cell"><strong class="dname">UI / UX Audit & Bug-Fix Sprint</strong><p class="dnotes">Full sweep of every ERP screen. Catalogue and fix all P0/P1 bugs, UX inconsistencies, and broken workflows. Result: a system any investor can navigate without assistance.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat1_E01"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat1_E01" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat1_E01" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat1_E01" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E01"><input type="file" id="upl_E01" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>E02</strong></td>
+          <td class="name-cell"><strong class="dname">Database Schema Refactoring</strong><p class="dnotes">Audit every table, column, and relationship. Remove legacy/duplicate fields. Enforce naming conventions and FK constraints. Structure for multi-subsidiary expansion.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat1_E02"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat1_E02" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat1_E02" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat1_E02" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E02"><input type="file" id="upl_E02" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>E03</strong></td>
+          <td class="name-cell"><strong class="dname">Feature Inventory & Internal Documentation</strong><p class="dnotes">Produce a structured internal document: what works, what is partially built, what is broken, and what is missing. Single source of truth for ERP scope decisions.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat1_E03"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat1_E03" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat1_E03" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat1_E03" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E03"><input type="file" id="upl_E03" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr></tbody>
+      </table></div>
+      <button class="add-task-btn" onclick="addTask('cat1','tbl_cat1')">
+        ＋ Add Task to ERP Stabilization
+      </button>
+    </div>
+    <div id="cat2" class="tab-panel">
+      <h2 class="section-title">ERP Core Features</h2>
+      <p class="section-subtitle">Define the Minimum Viable ERP</p>
+      <p class="desc">Implement essential operational records, document storage, permissions, and audit trail that make Blockdor investor-ready.</p>
+      <div style="overflow-x:auto"><table id="tbl_cat2">
+        <thead><tr>
+          <th style="width:52px">ID</th><th>Deliverable &amp; Description</th>
+          <th style="width:148px">Owner</th><th style="width:118px">Priority</th>
+          <th style="width:155px">Target Date</th><th style="width:140px">Cost (USD)</th>
+          <th style="width:195px">Quotation / Attachment</th>
+        </tr></thead>
+        <tbody id="tbody_cat2">
+        <tr>
+          <td class="id-cell"><strong>E04</strong></td>
+          <td class="name-cell"><strong class="dname">Entity & Subsidiary Records Management</strong><p class="dnotes">CRUD screens for Blockdor Inc. (USA), Blockdor SARL (CIV), Blockdor SARL (Gabon). Fields: registered name, jurisdiction, registration number, address, status, key contacts.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat2_E04"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat2_E04" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat2_E04" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat2_E04" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E04"><input type="file" id="upl_E04" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>E05</strong></td>
+          <td class="name-cell"><strong class="dname">Mining Permit & Concession Registry</strong><p class="dnotes">Full permit lifecycle tracking: permit ID, concession name, region, coordinates, area (km²), issue/expiry dates, renewal status, permit type, linked entity. Covers 600 km² pilot permit.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat2_E05"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat2_E05" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat2_E05" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat2_E05" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E05"><input type="file" id="upl_E05" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>E06</strong></td>
+          <td class="name-cell"><strong class="dname">Contract Records & Royalty Agreements Module</strong><p class="dnotes">Store buyer agreements (House of Malakai), royalty options, JV agreements, supplier contracts, NDA logs. Each links to entity, permit, counterparty, value, execution and expiry date.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat2_E06"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat2_E06" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat2_E06" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat2_E06" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E06"><input type="file" id="upl_E06" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>E07</strong></td>
+          <td class="name-cell"><strong class="dname">Audit Trail & Change History Engine</strong><p class="dnotes">Middleware logging every data write: what changed, who, when, previous and new value. Immutable log required for institutional investor and regulatory due diligence.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat2_E07"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat2_E07" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat2_E07" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat2_E07" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E07"><input type="file" id="upl_E07" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>E08</strong></td>
+          <td class="name-cell"><strong class="dname">Granular Role-Based Permissions (RBAC)</strong><p class="dnotes">Fine-grained access control per module, record, and field. Roles: Admin, Executive, Finance, Operations, Viewer. Permissions: view, create, edit, approve, reverse, export, delete.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat2_E08"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat2_E08" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat2_E08" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat2_E08" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E08"><input type="file" id="upl_E08" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>E09</strong></td>
+          <td class="name-cell"><strong class="dname">Document Management & File Attachments</strong><p class="dnotes">Attach PDFs, contracts, assay reports, GPS evidence, signatures, and permit certificates to related ERP records. Versioned storage with metadata tags, exportable to the investor data room.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat2_E09"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat2_E09" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat2_E09" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat2_E09" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E09"><input type="file" id="upl_E09" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>E10</strong></td>
+          <td class="name-cell"><strong class="dname">Exportable Reporting Dashboards & KPIs</strong><p class="dnotes">Investor-facing dashboards: active permits, contract value pipeline, inventory positions, royalty revenue YTD, entity structure. All KPIs reconcile to underlying transactions. Exportable as PDF and Excel.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat2_E10"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat2_E10" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat2_E10" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat2_E10" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E10"><input type="file" id="upl_E10" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr></tbody>
+      </table></div>
+      <button class="add-task-btn" onclick="addTask('cat2','tbl_cat2')">
+        ＋ Add Task to ERP Core Features
+      </button>
+    </div>
+    <div id="cat3" class="tab-panel">
+      <h2 class="section-title">Accounting & Finance</h2>
+      <p class="section-subtitle">Accounting Scope Decision</p>
+      <p class="desc">Use QuickBooks for official books, taxes, and reconciliation. Sync ERP operational data into it.</p>
+      <div style="overflow-x:auto"><table id="tbl_cat3">
+        <thead><tr>
+          <th style="width:52px">ID</th><th>Deliverable &amp; Description</th>
+          <th style="width:148px">Owner</th><th style="width:118px">Priority</th>
+          <th style="width:155px">Target Date</th><th style="width:140px">Cost (USD)</th>
+          <th style="width:195px">Quotation / Attachment</th>
+        </tr></thead>
+        <tbody id="tbody_cat3">
+        <tr>
+          <td class="id-cell"><strong>D01</strong></td>
+          <td class="name-cell"><strong class="dname">QuickBooks Online Advanced — Subscription & Setup</strong><p class="dnotes">$200/mo. Configure chart of accounts, multi-currency support, and bank feeds. Official general ledger and tax filing system across all entities.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat3_D01"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" selected>Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat3_D01" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat3_D01" value="Decided" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat3_D01" value="200/mo" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D01"><input type="file" id="upl_D01" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>E11</strong></td>
+          <td class="name-cell"><strong class="dname">ERP → QuickBooks Sync & Integration API</strong><p class="dnotes">Bridge API pushing ERP operational events (royalty receipts, gold transactions, contract payments) into QuickBooks as structured journal entries with FX flags and entity-level tagging.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat3_E11"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat3_E11" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat3_E11" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat3_E11" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E11"><input type="file" id="upl_E11" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>E12</strong></td>
+          <td class="name-cell"><strong class="dname">Gold Purchase, Sale & Royalty Transaction Ledger</strong><p class="dnotes">ERP-native transaction record for every gold purchase, sale, royalty receipt, and commission. Fields: date, quantity, unit price, currency, counterparty, permit reference, linked contract.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat3_E12"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat3_E12" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat3_E12" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat3_E12" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E12"><input type="file" id="upl_E12" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>E13</strong></td>
+          <td class="name-cell"><strong class="dname">Metal Inventory & Reconciliation Module</strong><p class="dnotes">Physical metal tracking through field acquisition → transit → assay → processing → sale. Every gram must reconcile. Handles splits, merges, losses, theft, and returns.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat3_E13"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat3_E13" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat3_E13" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat3_E13" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E13"><input type="file" id="upl_E13" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr></tbody>
+      </table></div>
+      <button class="add-task-btn" onclick="addTask('cat3','tbl_cat3')">
+        ＋ Add Task to Accounting & Finance
+      </button>
+    </div>
+    <div id="cat4" class="tab-panel">
+      <h2 class="section-title">Multi-Entity & FX</h2>
+      <p class="section-subtitle">Multi-Subsidiary Architecture</p>
+      <p class="desc">Rebuild the ERP to run as independent instances per subsidiary with a consolidated group-level view for executives.</p>
+      <div style="overflow-x:auto"><table id="tbl_cat4">
+        <thead><tr>
+          <th style="width:52px">ID</th><th>Deliverable &amp; Description</th>
+          <th style="width:148px">Owner</th><th style="width:118px">Priority</th>
+          <th style="width:155px">Target Date</th><th style="width:140px">Cost (USD)</th>
+          <th style="width:195px">Quotation / Attachment</th>
+        </tr></thead>
+        <tbody id="tbody_cat4">
+        <tr>
+          <td class="id-cell"><strong>E14</strong></td>
+          <td class="name-cell"><strong class="dname">Multi-Subsidiary ERP Architecture Duplication</strong><p class="dnotes">Isolated environments per legal entity: Blockdor Inc. USA, Blockdor SARL CIV, Blockdor SARL Gabon. Each has independent records, user pools, and financial ledgers. Group-level view consolidates all.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat4_E14"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat4_E14" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat4_E14" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat4_E14" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E14"><input type="file" id="upl_E14" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>E15</strong></td>
+          <td class="name-cell"><strong class="dname">FX Module — Exchange Rates & Dual-Entry Balancing</strong><p class="dnotes">Timestamped historical rate tables (USD, XOF, EUR, XAF). Records unrealized/realized FX gains and losses. Every cross-currency transaction produces a perfectly balanced dual-entry journal entry.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat4_E15"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat4_E15" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat4_E15" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat4_E15" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E15"><input type="file" id="upl_E15" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>E16</strong></td>
+          <td class="name-cell"><strong class="dname">Inter-Entity Transaction & Transfer Tracking</strong><p class="dnotes">Track money flows, asset transfers, royalty distributions, and loan arrangements between group entities. Enforces intercompany eliminations at consolidation and clean audit trails per entity.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat4_E16"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat4_E16" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat4_E16" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat4_E16" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E16"><input type="file" id="upl_E16" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr></tbody>
+      </table></div>
+      <button class="add-task-btn" onclick="addTask('cat4','tbl_cat4')">
+        ＋ Add Task to Multi-Entity & FX
+      </button>
+    </div>
+    <div id="cat5" class="tab-panel">
+      <h2 class="section-title">Tax & Legal Compliance</h2>
+      <p class="section-subtitle">Tax Advisory & Compliance Engine</p>
+      <p class="desc">Tax handling across USA, Gabon, Côte d'Ivoire, and France is complex. Engage qualified external tax counsel before building any compliance modules.</p>
+      <div style="overflow-x:auto"><table id="tbl_cat5">
+        <thead><tr>
+          <th style="width:52px">ID</th><th>Deliverable &amp; Description</th>
+          <th style="width:148px">Owner</th><th style="width:118px">Priority</th>
+          <th style="width:155px">Target Date</th><th style="width:140px">Cost (USD)</th>
+          <th style="width:195px">Quotation / Attachment</th>
+        </tr></thead>
+        <tbody id="tbody_cat5">
+        <tr>
+          <td class="id-cell"><strong>E17</strong></td>
+          <td class="name-cell"><strong class="dname">Engage Y3 Tax Advisory — Corporate Structure Report</strong><p class="dnotes">Formal engagement with Y3 to deliver: recommended holding structure, subsidiary relationships, tax exposures per jurisdiction (USA, CIV, Gabon, France), royalty withholding treatment, and transfer pricing considerations.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat5_E17"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat5_E17" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat5_E17" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat5_E17" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E17"><input type="file" id="upl_E17" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>E18</strong></td>
+          <td class="name-cell"><strong class="dname">ERP Tax Compliance & Reporting Engine</strong><p class="dnotes">Configure tax rule sets per entity after Y3 delivers their report: local VAT rates, royalty withholding, import duty calculations, export declarations. Do not begin before Y3 report is received.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat5_E18"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat5_E18" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat5_E18" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat5_E18" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E18"><input type="file" id="upl_E18" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>E19</strong></td>
+          <td class="name-cell"><strong class="dname">SAP / Oracle / Infor Competitive Benchmarking</strong><p class="dnotes">Audit current ERP against SAP Business One, Oracle NetSuite, and Infor SyteLine for mining royalty companies. Deliver gap list with build/buy/integrate recommendation per feature.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat5_E19"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat5_E19" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat5_E19" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat5_E19" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E19"><input type="file" id="upl_E19" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr></tbody>
+      </table></div>
+      <button class="add-task-btn" onclick="addTask('cat5','tbl_cat5')">
+        ＋ Add Task to Tax & Legal Compliance
+      </button>
+    </div>
+    <div id="cat6" class="tab-panel">
+      <h2 class="section-title">Design, Brand & Marketing</h2>
+      <p class="section-subtitle">Brand Identity, Website & SIREXE</p>
+      <p class="desc">All external-facing materials must convey a credible, institutional-grade brand. Brand guideline approval is the critical path.</p>
+      <div style="overflow-x:auto"><table id="tbl_cat6">
+        <thead><tr>
+          <th style="width:52px">ID</th><th>Deliverable &amp; Description</th>
+          <th style="width:148px">Owner</th><th style="width:118px">Priority</th>
+          <th style="width:155px">Target Date</th><th style="width:140px">Cost (USD)</th>
+          <th style="width:195px">Quotation / Attachment</th>
+        </tr></thead>
+        <tbody id="tbody_cat6">
+        <tr>
+          <td class="id-cell"><strong>D02</strong></td>
+          <td class="name-cell"><strong class="dname">Brand Guideline Validation — CEO Sign-off</strong><p class="dnotes">Dawid reviews and approves: logo concept, primary/secondary logos, colour palette, typography, font selection, graphic elements, photography style, layout, brand personality, website and booth visual direction.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat6_D02"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" selected>Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat6_D02" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat6_D02" value="Wednesday 2 July" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat6_D02" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D02"><input type="file" id="upl_D02" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>D03</strong></td>
+          <td class="name-cell"><strong class="dname">Finalize Brand Guideline Document</strong><p class="dnotes">Official Blockdor Brand Guideline from Charles and Ibuka. Must include: logo usage rules, spacing, colour codes (HEX/PANTONE/CMYK/RGB), approved typefaces, graphic elements, brand personality, photography direction.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat6_D03"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" selected>Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat6_D03" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat6_D03" value="Immediately after D02" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat6_D03" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D03"><input type="file" id="upl_D03" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>D04</strong></td>
+          <td class="name-cell"><strong class="dname">Corporate Website Mock-ups</strong><p class="dnotes">Responsive desktop and mobile mockups: Homepage, About, Services/Solutions, Contact, News/Blog. Must reflect final brand guideline. Blockdor team to consolidate review feedback within 5 business days.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat6_D04"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" selected>Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat6_D04" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat6_D04" value="3–4 weeks after D03" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat6_D04" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D04"><input type="file" id="upl_D04" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>D05</strong></td>
+          <td class="name-cell"><strong class="dname">SIREXE Exhibition Stand Design</strong><p class="dnotes">Full booth layout for SIREXE trade show, Abidjan, November 18. Includes: floor plan, LED screen assets, wall graphic boards, messaging hierarchy, and brand applications.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat6_D05"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" selected>Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat6_D05" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat6_D05" value="3–4 weeks after D03" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat6_D05" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D05"><input type="file" id="upl_D05" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>D06</strong></td>
+          <td class="name-cell"><strong class="dname">Company Website — Full Design & Development</strong><p class="dnotes">Full design and development per contract INV-000005. $4,000 total: 70% ($2,800) on signing; 30% ($1,200) on handover. CMS-powered site. Responsive. 3 design revisions. First demo in 3 weeks.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat6_D06"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" selected>Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat6_D06" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat6_D06" value="8 weeks from contract start" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat6_D06" value="4,000" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><span class="on-file-badge">📋 INV-000005 Invoice<br><small>Available locally</small></span><span class="on-file-badge">📋 Website Design Agreement<br><small>Available locally</small></span><label class="upload-btn" for="upl_D06"><input type="file" id="upl_D06" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>D07</strong></td>
+          <td class="name-cell"><strong class="dname">Event Print Materials — SIREXE</strong><p class="dnotes">Design and print all physical materials for SIREXE: business cards, branded brochure, large-format wall calendar, pens, branded giveaways, and additional merchandise within budget.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat6_D07"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" selected>Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat6_D07" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat6_D07" value="After design review" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat6_D07" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D07"><input type="file" id="upl_D07" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>D08</strong></td>
+          <td class="name-cell"><strong class="dname">Launch Blockdor LinkedIn Corporate Page</strong><p class="dnotes">Configure official Blockdor company LinkedIn page: professional banner, company description, industry tags, location, and website link.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat6_D08"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat6_D08" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat6_D08" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat6_D08" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D08"><input type="file" id="upl_D08" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr></tbody>
+      </table></div>
+      <button class="add-task-btn" onclick="addTask('cat6','tbl_cat6')">
+        ＋ Add Task to Design, Brand & Marketing
+      </button>
+    </div>
+    <div id="cat7" class="tab-panel">
+      <h2 class="section-title">Investor Readiness & Data Room</h2>
+      <p class="section-subtitle">Fundraising Infrastructure</p>
+      <p class="desc">With the right systems and materials in place, Dawid can run a focused 2-month fundraising sprint.</p>
+      <div style="overflow-x:auto"><table id="tbl_cat7">
+        <thead><tr>
+          <th style="width:52px">ID</th><th>Deliverable &amp; Description</th>
+          <th style="width:148px">Owner</th><th style="width:118px">Priority</th>
+          <th style="width:155px">Target Date</th><th style="width:140px">Cost (USD)</th>
+          <th style="width:195px">Quotation / Attachment</th>
+        </tr></thead>
+        <tbody id="tbody_cat7">
+        <tr>
+          <td class="id-cell"><strong>D09</strong></td>
+          <td class="name-cell"><strong class="dname">DocSend Investor Data Room — Deploy & Configure</strong><p class="dnotes">$150/mo. Secure investor data room with document-level access controls and view analytics. Enables sharing decks, permits, and contracts with VCs and strategic partners.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat7_D09"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" selected>Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat7_D09" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat7_D09" value="Decided" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat7_D09" value="150/mo" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D09"><input type="file" id="upl_D09" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>D10</strong></td>
+          <td class="name-cell"><strong class="dname">10-Page Investor Pitch Deck</strong><p class="dnotes">Full 10-page investor deck: company overview, problem, Blockdor solution, market opportunity, permit portfolio, technology overview (ERP, Smartbox, traceability), team, financials/use of funds, and ask.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat7_D10"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat7_D10" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat7_D10" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat7_D10" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D10"><input type="file" id="upl_D10" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>D11</strong></td>
+          <td class="name-cell"><strong class="dname">1-Page Executive Teaser</strong><p class="dnotes">Print-ready single-page executive summary for cold outreach, broker introductions, and conference distribution.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat7_D11"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat7_D11" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat7_D11" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat7_D11" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D11"><input type="file" id="upl_D11" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>D12</strong></td>
+          <td class="name-cell"><strong class="dname">Standard NDA Template Library</strong><p class="dnotes">3–5 print-ready blank NDA templates: bilateral NDA, unilateral NDA (data sharing), mining-specific NDA. Accessible via the ERP asset library and the DocSend data room.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat7_D12"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat7_D12" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat7_D12" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat7_D12" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D12"><input type="file" id="upl_D12" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>D13</strong></td>
+          <td class="name-cell"><strong class="dname">Investor Data Room — Full Document Upload</strong><p class="dnotes">Populate DocSend by folder: Company, Permits, Financials, Technology, Fundraising (deck, teaser, NDA).</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat7_D13"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat7_D13" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat7_D13" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat7_D13" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D13"><input type="file" id="upl_D13" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr></tbody>
+      </table></div>
+      <button class="add-task-btn" onclick="addTask('cat7','tbl_cat7')">
+        ＋ Add Task to Investor Readiness & Data Room
+      </button>
+    </div>
+    <div id="cat8" class="tab-panel">
+      <h2 class="section-title">Smartbox Hardware</h2>
+      <p class="section-subtitle">Hardware Beta / MVP — Procurement & Integration</p>
+      <p class="desc">Test whether a standard transport container can be tracked reliably using commercially available hardware before investing in custom electronics.</p>
+      <div style="overflow-x:auto"><table id="tbl_cat8">
+        <thead><tr>
+          <th style="width:52px">ID</th><th>Deliverable &amp; Description</th>
+          <th style="width:148px">Owner</th><th style="width:118px">Priority</th>
+          <th style="width:155px">Target Date</th><th style="width:140px">Cost (USD)</th>
+          <th style="width:195px">Quotation / Attachment</th>
+        </tr></thead>
+        <tbody id="tbody_cat8">
+        <tr>
+          <td class="id-cell"><strong>D14</strong></td>
+          <td class="name-cell"><strong class="dname">Retail Hardware Procurement — MVP Kit</strong><p class="dnotes">6 components: LandAirSea Overdrive LTE GPS ($50), SPOT Trace Satellite ($80), Apple AirTag 4-pack ($90), DELSWIN Combination Lock ($30), YoLink LoRa Vibration Sensor + Hub ($37), SABRE Door & Window Alarm ($20). Total: $307.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat8_D14"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" selected>Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat8_D14" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat8_D14" value="Decided" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat8_D14" value="307" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><span class="on-file-badge">📋 Smartbox MVP Procurement List<br><small>Available locally</small></span><label class="upload-btn" for="upl_D14"><input type="file" id="upl_D14" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>D15</strong></td>
+          <td class="name-cell"><strong class="dname">Physical Assembly & Field Testing</strong><p class="dnotes">Mount and configure all 6 components on a standard transport container. Field test through a simulated transit scenario. Validate GPS pings, satellite fallback, vibration alerts, and door alarm.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat8_D15"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat8_D15" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat8_D15" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat8_D15" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D15"><input type="file" id="upl_D15" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>E20</strong></td>
+          <td class="name-cell"><strong class="dname">Smartbox Telemetry API — ERP Integration</strong><p class="dnotes">ERP data ingestion API receiving real-time telemetry from LandAirSea, SPOT Trace, and YoLink cloud APIs. Display on live ERP dashboard linked to the relevant shipment record.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat8_E20"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat8_E20" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat8_E20" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat8_E20" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E20"><input type="file" id="upl_E20" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr>
+        <tr>
+          <td class="id-cell"><strong>E21</strong></td>
+          <td class="name-cell"><strong class="dname">Chain-of-Custody & Traceability Records Module</strong><p class="dnotes">ERP module recording full chain of custody per metal shipment: origin permit, departure timestamp, GPS waypoints, handler names, arrival confirmation, and assay result.</p></td>
+          <td class="input-cell"><select class="field-select" id="o_cat8_E21"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+          <td class="input-cell"><select class="field-select priority-select" id="p_cat8_E21" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+          <td class="input-cell"><input type="text" class="field-input" id="d_cat8_E21" value="" placeholder="e.g. Aug 2026"></td>
+          <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="c_cat8_E21" value="" placeholder="0.00"></div></td>
+          <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E21"><input type="file" id="upl_E21" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+        </tr></tbody>
+      </table></div>
+      <button class="add-task-btn" onclick="addTask('cat8','tbl_cat8')">
+        ＋ Add Task to Smartbox Hardware
+      </button>
+    </div>
+
+    <!-- VISUAL TIMELINE -->
+    <div id="timeline" class="tab-panel">
+      <h2 class="section-title">Visual Timeline — Q3 → SIREXE</h2>
+      <p class="section-subtitle">July 2026 → November 2026</p>
+      <p class="desc">Horizontal Gantt chart showing all confirmed and planned deliverables across the Q3 roadmap window.
+         <strong>Solid bars</strong> = confirmed dates. <strong>Dashed/faded bars</strong> = estimated / TBD.
+         The red line marks today. Hover over any bar for details.</p>
+      <div class="gantt-legend">
+        <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:#f59e0b"></div>Design &amp; Brand</div>
+        <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:#3b82f6"></div>ERP Development</div>
+        <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:#10b981"></div>Finance</div>
+        <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:#8b5cf6"></div>Investor Readiness</div>
+        <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:#ef4444"></div>Smartbox Hardware</div>
+        <div class="gantt-legend-item" style="opacity:.6"><div class="gantt-legend-dot" style="background:#999;border:1px dashed #666"></div>TBD / Estimated</div>
+        <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:#EF4444;width:4px;height:18px;border-radius:2px"></div>Today</div>
+      </div>
+      <div id="gantt-container"></div>
+    </div>
+
+    <!-- TEAM ADDITIONS -->
+    <div id="additions" class="tab-panel">
+      <h2 class="section-title">Team Additions</h2>
+      <p class="section-subtitle">Submit tasks or deliverables that may have been missed</p>
+      <div class="additions-header">
+        <h3>📝 Add a Missing Task or Deliverable</h3>
+        <p>Use this tab to submit anything that should be tracked but isn't listed yet. Fill in the form and click Submit — your entry will appear in the table below.</p>
+      </div>
+      <div class="add-form">
+        <h4>New Task / Deliverable</h4>
+        <div class="form-grid">
+          <div class="form-group"><label>Category</label><select class="field-select" id="new_cat"><option value="cat1">ERP Stabilization</option>
+<option value="cat2">ERP Core Features</option>
+<option value="cat3">Accounting & Finance</option>
+<option value="cat4">Multi-Entity & FX</option>
+<option value="cat5">Tax & Legal Compliance</option>
+<option value="cat6">Design, Brand & Marketing</option>
+<option value="cat7">Investor Readiness & Data Room</option>
+<option value="cat8">Smartbox Hardware</option>
+<option value="new">New Category</option></select></div>
+          <div class="form-group"><label>Submitted by</label><select class="field-select" id="new_owner"><option value="— Select Owner —">— Select Owner —</option>
+<option value="Dawid">Dawid</option>
+<option value="Patrick">Patrick</option>
+<option value="Brook">Brook</option>
+<option value="Etienne">Etienne</option>
+<option value="Charles & Ibuka">Charles & Ibuka</option>
+<option value="Y3 Advisory">Y3 Advisory</option>
+<option value="External / TBD">External / TBD</option></select></div>
+          <div class="form-group"><label>Priority</label><select class="field-select priority-select" id="new_priority" onchange="applyPriorityColor(this)"><option value="— Select —">— Select —</option>
+<option value="High">High</option>
+<option value="Medium">Medium</option>
+<option value="Low">Low</option></select></div>
+        </div>
+        <div class="form-group" style="margin-bottom:12px"><label>Task / Deliverable Name</label><input type="text" class="field-input" id="new_name" placeholder="e.g. Set up company email domain"></div>
+        <div class="form-group" style="margin-bottom:12px"><label>Description / Notes</label><textarea class="field-input" id="new_desc" style="min-height:70px;resize:vertical" placeholder="Describe what needs to be done and why..."></textarea></div>
+        <div class="form-grid">
+          <div class="form-group"><label>Suggested Target Date</label><input type="text" class="field-input" id="new_date" placeholder="e.g. Aug 2026"></div>
+          <div class="form-group"><label>Estimated Cost (USD)</label><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="new_cost" placeholder="0.00"></div></div>
+          <div class="form-group"><label>Attach file (optional)</label><label class="upload-btn" for="new_attach" style="margin-top:2px"><input type="file" id="new_attach" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div>
+        </div>
+        <button class="submit-btn" onclick="submitAddition()">＋ Submit Task</button>
+        <span id="submit_msg" style="margin-left:14px;font-size:12.5px;color:var(--green);display:none">✓ Task added!</span>
+      </div>
+      <h4 style="font-size:13px;font-weight:700;color:var(--primary);margin-bottom:10px">Submitted Additions</h4>
+      <div style="overflow-x:auto"><table id="additions-table">
+        <thead><tr>
+          <th style="width:40px">#</th><th style="width:130px">Category</th><th>Task Name &amp; Notes</th>
+          <th style="width:120px">Submitted by</th><th style="width:110px">Priority</th>
+          <th style="width:140px">Target Date</th><th style="width:130px">Cost</th>
+        </tr></thead>
+        <tbody id="additions-list"><tr><td colspan="7" style="text-align:center;color:var(--muted);font-style:italic;padding:24px">No additions yet.</td></tr></tbody>
+      </table></div>
+    </div>
+
+    <!-- MASTER VIEW -->
+    <div id="master" class="tab-panel">
+      <h2 class="section-title">Master View — All 21 Deliverables</h2>
+      <p class="section-subtitle">Consolidated view across all 8 categories</p>
+      <p class="desc">Confirmed costs and dates are pre-filled. All other fields are blank for team input. Use ➕ Attach File to upload quotations directly.</p>
+      <div style="overflow-x:auto"><table>
+        <thead><tr>
+          <th style="width:50px">ID</th><th style="width:130px">Category</th><th>Deliverable</th>
+          <th style="width:148px">Owner</th><th style="width:118px">Priority</th>
+          <th style="width:148px">Target Date</th><th style="width:140px">Cost (USD)</th>
+          <th style="width:195px">Quotation / Attachment</th>
+        </tr></thead>
+        <tbody>
+            <tr>
+              <td><strong>E01</strong></td>
+              <td><span class="cat-badge">ERP Stabilization</span></td>
+              <td class="name-cell"><strong>UI / UX Audit & Bug-Fix Sprint</strong><p class="dnotes" style="margin-top:3px">Full sweep of every ERP screen. Catalogue and fix all P0/P1 bugs, UX inconsistencies, and broken wor…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat1_E01"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat1_E01" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat1_E01" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat1_E01" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E01"><input type="file" id="upl_E01" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E02</strong></td>
+              <td><span class="cat-badge">ERP Stabilization</span></td>
+              <td class="name-cell"><strong>Database Schema Refactoring</strong><p class="dnotes" style="margin-top:3px">Audit every table, column, and relationship. Remove legacy/duplicate fields. Enforce naming conventi…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat1_E02"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat1_E02" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat1_E02" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat1_E02" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E02"><input type="file" id="upl_E02" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E03</strong></td>
+              <td><span class="cat-badge">ERP Stabilization</span></td>
+              <td class="name-cell"><strong>Feature Inventory & Internal Documentation</strong><p class="dnotes" style="margin-top:3px">Produce a structured internal document: what works, what is partially built, what is broken, and wha…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat1_E03"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat1_E03" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat1_E03" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat1_E03" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E03"><input type="file" id="upl_E03" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E04</strong></td>
+              <td><span class="cat-badge">ERP Core Features</span></td>
+              <td class="name-cell"><strong>Entity & Subsidiary Records Management</strong><p class="dnotes" style="margin-top:3px">CRUD screens for Blockdor Inc. (USA), Blockdor SARL (CIV), Blockdor SARL (Gabon). Fields: registered…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat2_E04"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat2_E04" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat2_E04" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat2_E04" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E04"><input type="file" id="upl_E04" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E05</strong></td>
+              <td><span class="cat-badge">ERP Core Features</span></td>
+              <td class="name-cell"><strong>Mining Permit & Concession Registry</strong><p class="dnotes" style="margin-top:3px">Full permit lifecycle tracking: permit ID, concession name, region, coordinates, area (km²), issue/e…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat2_E05"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat2_E05" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat2_E05" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat2_E05" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E05"><input type="file" id="upl_E05" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E06</strong></td>
+              <td><span class="cat-badge">ERP Core Features</span></td>
+              <td class="name-cell"><strong>Contract Records & Royalty Agreements Module</strong><p class="dnotes" style="margin-top:3px">Store buyer agreements (House of Malakai), royalty options, JV agreements, supplier contracts, NDA l…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat2_E06"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat2_E06" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat2_E06" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat2_E06" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E06"><input type="file" id="upl_E06" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E07</strong></td>
+              <td><span class="cat-badge">ERP Core Features</span></td>
+              <td class="name-cell"><strong>Audit Trail & Change History Engine</strong><p class="dnotes" style="margin-top:3px">Middleware logging every data write: what changed, who, when, previous and new value. Immutable log …</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat2_E07"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat2_E07" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat2_E07" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat2_E07" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E07"><input type="file" id="upl_E07" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E08</strong></td>
+              <td><span class="cat-badge">ERP Core Features</span></td>
+              <td class="name-cell"><strong>Granular Role-Based Permissions (RBAC)</strong><p class="dnotes" style="margin-top:3px">Fine-grained access control per module, record, and field. Roles: Admin, Executive, Finance, Operati…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat2_E08"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat2_E08" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat2_E08" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat2_E08" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E08"><input type="file" id="upl_E08" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E09</strong></td>
+              <td><span class="cat-badge">ERP Core Features</span></td>
+              <td class="name-cell"><strong>Document Management & File Attachments</strong><p class="dnotes" style="margin-top:3px">Attach PDFs, contracts, assay reports, GPS evidence, signatures, and permit certificates to related …</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat2_E09"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat2_E09" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat2_E09" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat2_E09" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E09"><input type="file" id="upl_E09" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E10</strong></td>
+              <td><span class="cat-badge">ERP Core Features</span></td>
+              <td class="name-cell"><strong>Exportable Reporting Dashboards & KPIs</strong><p class="dnotes" style="margin-top:3px">Investor-facing dashboards: active permits, contract value pipeline, inventory positions, royalty re…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat2_E10"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat2_E10" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat2_E10" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat2_E10" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E10"><input type="file" id="upl_E10" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>D01</strong></td>
+              <td><span class="cat-badge">Accounting & Finance</span></td>
+              <td class="name-cell"><strong>QuickBooks Online Advanced — Subscription & Setup</strong><p class="dnotes" style="margin-top:3px">$200/mo. Configure chart of accounts, multi-currency support, and bank feeds. Official general ledge…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat3_D01"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" selected>Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat3_D01" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat3_D01" value="Decided" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat3_D01" value="200/mo" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D01"><input type="file" id="upl_D01" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E11</strong></td>
+              <td><span class="cat-badge">Accounting & Finance</span></td>
+              <td class="name-cell"><strong>ERP → QuickBooks Sync & Integration API</strong><p class="dnotes" style="margin-top:3px">Bridge API pushing ERP operational events (royalty receipts, gold transactions, contract payments) i…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat3_E11"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat3_E11" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat3_E11" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat3_E11" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E11"><input type="file" id="upl_E11" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E12</strong></td>
+              <td><span class="cat-badge">Accounting & Finance</span></td>
+              <td class="name-cell"><strong>Gold Purchase, Sale & Royalty Transaction Ledger</strong><p class="dnotes" style="margin-top:3px">ERP-native transaction record for every gold purchase, sale, royalty receipt, and commission. Fields…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat3_E12"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat3_E12" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat3_E12" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat3_E12" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E12"><input type="file" id="upl_E12" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E13</strong></td>
+              <td><span class="cat-badge">Accounting & Finance</span></td>
+              <td class="name-cell"><strong>Metal Inventory & Reconciliation Module</strong><p class="dnotes" style="margin-top:3px">Physical metal tracking through field acquisition → transit → assay → processing → sale. Every gram …</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat3_E13"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat3_E13" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat3_E13" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat3_E13" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E13"><input type="file" id="upl_E13" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E14</strong></td>
+              <td><span class="cat-badge">Multi-Entity & FX</span></td>
+              <td class="name-cell"><strong>Multi-Subsidiary ERP Architecture Duplication</strong><p class="dnotes" style="margin-top:3px">Isolated environments per legal entity: Blockdor Inc. USA, Blockdor SARL CIV, Blockdor SARL Gabon. E…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat4_E14"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat4_E14" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat4_E14" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat4_E14" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E14"><input type="file" id="upl_E14" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E15</strong></td>
+              <td><span class="cat-badge">Multi-Entity & FX</span></td>
+              <td class="name-cell"><strong>FX Module — Exchange Rates & Dual-Entry Balancing</strong><p class="dnotes" style="margin-top:3px">Timestamped historical rate tables (USD, XOF, EUR, XAF). Records unrealized/realized FX gains and lo…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat4_E15"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat4_E15" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat4_E15" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat4_E15" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E15"><input type="file" id="upl_E15" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E16</strong></td>
+              <td><span class="cat-badge">Multi-Entity & FX</span></td>
+              <td class="name-cell"><strong>Inter-Entity Transaction & Transfer Tracking</strong><p class="dnotes" style="margin-top:3px">Track money flows, asset transfers, royalty distributions, and loan arrangements between group entit…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat4_E16"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat4_E16" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat4_E16" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat4_E16" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E16"><input type="file" id="upl_E16" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E17</strong></td>
+              <td><span class="cat-badge">Tax & Legal Compliance</span></td>
+              <td class="name-cell"><strong>Engage Y3 Tax Advisory — Corporate Structure Report</strong><p class="dnotes" style="margin-top:3px">Formal engagement with Y3 to deliver: recommended holding structure, subsidiary relationships, tax e…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat5_E17"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat5_E17" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat5_E17" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat5_E17" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E17"><input type="file" id="upl_E17" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E18</strong></td>
+              <td><span class="cat-badge">Tax & Legal Compliance</span></td>
+              <td class="name-cell"><strong>ERP Tax Compliance & Reporting Engine</strong><p class="dnotes" style="margin-top:3px">Configure tax rule sets per entity after Y3 delivers their report: local VAT rates, royalty withhold…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat5_E18"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat5_E18" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat5_E18" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat5_E18" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E18"><input type="file" id="upl_E18" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E19</strong></td>
+              <td><span class="cat-badge">Tax & Legal Compliance</span></td>
+              <td class="name-cell"><strong>SAP / Oracle / Infor Competitive Benchmarking</strong><p class="dnotes" style="margin-top:3px">Audit current ERP against SAP Business One, Oracle NetSuite, and Infor SyteLine for mining royalty c…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat5_E19"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat5_E19" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat5_E19" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat5_E19" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E19"><input type="file" id="upl_E19" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>D02</strong></td>
+              <td><span class="cat-badge">Design, Brand & Marketing</span></td>
+              <td class="name-cell"><strong>Brand Guideline Validation — CEO Sign-off</strong><p class="dnotes" style="margin-top:3px">Dawid reviews and approves: logo concept, primary/secondary logos, colour palette, typography, font …</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat6_D02"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" selected>Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat6_D02" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat6_D02" value="Wednesday 2 July" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat6_D02" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D02"><input type="file" id="upl_D02" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>D03</strong></td>
+              <td><span class="cat-badge">Design, Brand & Marketing</span></td>
+              <td class="name-cell"><strong>Finalize Brand Guideline Document</strong><p class="dnotes" style="margin-top:3px">Official Blockdor Brand Guideline from Charles and Ibuka. Must include: logo usage rules, spacing, c…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat6_D03"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" selected>Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat6_D03" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat6_D03" value="Immediately after D02" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat6_D03" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D03"><input type="file" id="upl_D03" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>D04</strong></td>
+              <td><span class="cat-badge">Design, Brand & Marketing</span></td>
+              <td class="name-cell"><strong>Corporate Website Mock-ups</strong><p class="dnotes" style="margin-top:3px">Responsive desktop and mobile mockups: Homepage, About, Services/Solutions, Contact, News/Blog. Must…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat6_D04"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" selected>Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat6_D04" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat6_D04" value="3–4 weeks after D03" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat6_D04" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D04"><input type="file" id="upl_D04" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>D05</strong></td>
+              <td><span class="cat-badge">Design, Brand & Marketing</span></td>
+              <td class="name-cell"><strong>SIREXE Exhibition Stand Design</strong><p class="dnotes" style="margin-top:3px">Full booth layout for SIREXE trade show, Abidjan, November 18. Includes: floor plan, LED screen asse…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat6_D05"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" selected>Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat6_D05" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat6_D05" value="3–4 weeks after D03" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat6_D05" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D05"><input type="file" id="upl_D05" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>D06</strong></td>
+              <td><span class="cat-badge">Design, Brand & Marketing</span></td>
+              <td class="name-cell"><strong>Company Website — Full Design & Development</strong><p class="dnotes" style="margin-top:3px">Full design and development per contract INV-000005. $4,000 total: 70% ($2,800) on signing; 30% ($1,…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat6_D06"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" selected>Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat6_D06" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat6_D06" value="8 weeks from contract start" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat6_D06" value="4,000" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><span class="on-file-badge">📋 INV-000005 Invoice<br><small>Available locally</small></span><span class="on-file-badge">📋 Website Design Agreement<br><small>Available locally</small></span><label class="upload-btn" for="upl_D06"><input type="file" id="upl_D06" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>D07</strong></td>
+              <td><span class="cat-badge">Design, Brand & Marketing</span></td>
+              <td class="name-cell"><strong>Event Print Materials — SIREXE</strong><p class="dnotes" style="margin-top:3px">Design and print all physical materials for SIREXE: business cards, branded brochure, large-format w…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat6_D07"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" selected>Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat6_D07" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat6_D07" value="After design review" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat6_D07" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D07"><input type="file" id="upl_D07" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>D08</strong></td>
+              <td><span class="cat-badge">Design, Brand & Marketing</span></td>
+              <td class="name-cell"><strong>Launch Blockdor LinkedIn Corporate Page</strong><p class="dnotes" style="margin-top:3px">Configure official Blockdor company LinkedIn page: professional banner, company description, industr…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat6_D08"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat6_D08" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat6_D08" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat6_D08" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D08"><input type="file" id="upl_D08" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>D09</strong></td>
+              <td><span class="cat-badge">Investor Readiness & Data Room</span></td>
+              <td class="name-cell"><strong>DocSend Investor Data Room — Deploy & Configure</strong><p class="dnotes" style="margin-top:3px">$150/mo. Secure investor data room with document-level access controls and view analytics. Enables s…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat7_D09"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" selected>Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat7_D09" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat7_D09" value="Decided" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat7_D09" value="150/mo" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D09"><input type="file" id="upl_D09" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>D10</strong></td>
+              <td><span class="cat-badge">Investor Readiness & Data Room</span></td>
+              <td class="name-cell"><strong>10-Page Investor Pitch Deck</strong><p class="dnotes" style="margin-top:3px">Full 10-page investor deck: company overview, problem, Blockdor solution, market opportunity, permit…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat7_D10"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat7_D10" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat7_D10" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat7_D10" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D10"><input type="file" id="upl_D10" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>D11</strong></td>
+              <td><span class="cat-badge">Investor Readiness & Data Room</span></td>
+              <td class="name-cell"><strong>1-Page Executive Teaser</strong><p class="dnotes" style="margin-top:3px">Print-ready single-page executive summary for cold outreach, broker introductions, and conference di…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat7_D11"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat7_D11" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat7_D11" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat7_D11" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D11"><input type="file" id="upl_D11" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>D12</strong></td>
+              <td><span class="cat-badge">Investor Readiness & Data Room</span></td>
+              <td class="name-cell"><strong>Standard NDA Template Library</strong><p class="dnotes" style="margin-top:3px">3–5 print-ready blank NDA templates: bilateral NDA, unilateral NDA (data sharing), mining-specific N…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat7_D12"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat7_D12" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat7_D12" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat7_D12" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D12"><input type="file" id="upl_D12" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>D13</strong></td>
+              <td><span class="cat-badge">Investor Readiness & Data Room</span></td>
+              <td class="name-cell"><strong>Investor Data Room — Full Document Upload</strong><p class="dnotes" style="margin-top:3px">Populate DocSend by folder: Company, Permits, Financials, Technology, Fundraising (deck, teaser, NDA…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat7_D13"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat7_D13" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat7_D13" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat7_D13" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D13"><input type="file" id="upl_D13" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>D14</strong></td>
+              <td><span class="cat-badge">Smartbox Hardware</span></td>
+              <td class="name-cell"><strong>Retail Hardware Procurement — MVP Kit</strong><p class="dnotes" style="margin-top:3px">6 components: LandAirSea Overdrive LTE GPS ($50), SPOT Trace Satellite ($80), Apple AirTag 4-pack ($…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat8_D14"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" selected>Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat8_D14" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat8_D14" value="Decided" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat8_D14" value="307" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><span class="on-file-badge">📋 Smartbox MVP Procurement List<br><small>Available locally</small></span><label class="upload-btn" for="upl_D14"><input type="file" id="upl_D14" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>D15</strong></td>
+              <td><span class="cat-badge">Smartbox Hardware</span></td>
+              <td class="name-cell"><strong>Physical Assembly & Field Testing</strong><p class="dnotes" style="margin-top:3px">Mount and configure all 6 components on a standard transport container. Field test through a simulat…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat8_D15"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat8_D15" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat8_D15" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat8_D15" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_D15"><input type="file" id="upl_D15" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E20</strong></td>
+              <td><span class="cat-badge">Smartbox Hardware</span></td>
+              <td class="name-cell"><strong>Smartbox Telemetry API — ERP Integration</strong><p class="dnotes" style="margin-top:3px">ERP data ingestion API receiving real-time telemetry from LandAirSea, SPOT Trace, and YoLink cloud A…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat8_E20"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat8_E20" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat8_E20" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat8_E20" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E20"><input type="file" id="upl_E20" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr>
+            <tr>
+              <td><strong>E21</strong></td>
+              <td><span class="cat-badge">Smartbox Hardware</span></td>
+              <td class="name-cell"><strong>Chain-of-Custody & Traceability Records Module</strong><p class="dnotes" style="margin-top:3px">ERP module recording full chain of custody per metal shipment: origin permit, departure timestamp, G…</p></td>
+              <td class="input-cell"><select class="field-select" id="tlo_tl_cat8_E21"><option value="— Select Owner —" >— Select Owner —</option><option value="Dawid" >Dawid</option><option value="Patrick" >Patrick</option><option value="Brook" >Brook</option><option value="Etienne" >Etienne</option><option value="Charles & Ibuka" >Charles & Ibuka</option><option value="Y3 Advisory" >Y3 Advisory</option><option value="External / TBD" >External / TBD</option></select></td>
+              <td class="input-cell"><select class="field-select priority-select" id="tlp_tl_cat8_E21" onchange="applyPriorityColor(this)"><option value="— Select —" >— Select —</option><option value="High" >High</option><option value="Medium" >Medium</option><option value="Low" >Low</option></select></td>
+              <td class="input-cell"><input type="text" class="field-input" id="tld_tl_cat8_E21" value="" placeholder="e.g. Aug 2026"></td>
+              <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" id="tlc_tl_cat8_E21" value="" placeholder="0.00"></div></td>
+              <td class="attach-col"><div class="attach-cell"><label class="upload-btn" for="upl_E21"><input type="file" id="upl_E21" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>
+            </tr></tbody>
+      </table></div>
+    </div>
+
+  </div>
+</main>
+<div class="gantt-tip" id="gantt-tip-static" style="display:none"></div>
+
+<script>
+// ── TAB SWITCHING ─────────────────────────────────────────────────────────────
+function switchTab(evt,id){
+  document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  evt.currentTarget.classList.add("active");
+  if(id==="timeline") setTimeout(buildGantt,50);
+}
+// ── PRIORITY COLOUR ───────────────────────────────────────────────────────────
+function applyPriorityColor(sel){
+  sel.className=sel.className.replace(/priority-(high|medium|low)/g,"").trim();
+  if(sel.value==="High")sel.classList.add("priority-high");
+  if(sel.value==="Medium")sel.classList.add("priority-medium");
+  if(sel.value==="Low")sel.classList.add("priority-low");
+}
+// ── ATTACHMENT ────────────────────────────────────────────────────────────────
+function showAttached(input){
+  if(!input.files.length)return;
+  var name=input.files[0].name;
+  var lbl=input.closest("label");
+  var span=lbl.nextElementSibling;
+  if(!span||!span.classList.contains("attached-name")){
+    span=document.createElement("span");span.className="attached-name";lbl.after(span);
+  }
+  span.textContent="✓ "+name;
+}
+// ── ADD TASK ROW ──────────────────────────────────────────────────────────────
+var addedCounts={};
+function addTask(catId,tblId){
+  addedCounts[catId]=(addedCounts[catId]||0)+1;
+  var tbody=document.getElementById("tbody_"+catId);
+  var row=document.createElement("tr");row.className="new-row";
+  var uid="custom_"+catId+"_"+addedCounts[catId];
+  row.innerHTML=`
+    <td class="id-cell"><strong>+</strong></td>
+    <td class="name-cell">
+      <input type="text" class="field-input dname" style="margin-bottom:5px;font-weight:600" placeholder="Task name...">
+      <textarea class="field-input" style="font-size:12px;resize:vertical;min-height:50px;width:100%;margin-top:3px" placeholder="Notes..."></textarea>
+    </td>
+    <td class="input-cell"><select class="field-select">${buildOwnerOpts("")}</select></td>
+    <td class="input-cell"><select class="field-select priority-select" onchange="applyPriorityColor(this)">${buildPrioOpts("")}</select></td>
+    <td class="input-cell"><input type="text" class="field-input" placeholder="e.g. Aug 2026"></td>
+    <td class="input-cell"><div class="cost-wrap"><span class="cost-prefix">$</span><input type="text" class="field-input cost-input" placeholder="0.00"></div></td>
+    <td class="attach-col"><div class="attach-cell"><label class="upload-btn"><input type="file" style="display:none" onchange="showAttached(this)">➕ Attach File</label></div></td>`;
+  tbody.appendChild(row);row.querySelector("input").focus();
+  row.scrollIntoView({behavior:"smooth",block:"center"});
+}
+function buildOwnerOpts(cur){return ['— Select Owner —', 'Dawid', 'Patrick', 'Brook', 'Etienne', 'Charles & Ibuka', 'Y3 Advisory', 'External / TBD'].map(m=>`<option value="${m}" ${m===cur?"selected":""}>${m}</option>`).join("");}
+function buildPrioOpts(cur){return ['— Select —', 'High', 'Medium', 'Low'].map(p=>`<option value="${p}" ${p===cur?"selected":""}>${p}</option>`).join("");}
+// ── TEAM ADDITIONS SUBMIT ─────────────────────────────────────────────────────
+var additionCount=0;
+function submitAddition(){
+  var name=document.getElementById("new_name").value.trim();
+  if(!name){alert("Please enter a task name.");return;}
+  var catSel=document.getElementById("new_cat");
+  var catLabel=catSel.options[catSel.selectedIndex].text;
+  var owner=document.getElementById("new_owner").value;
+  var prio=document.getElementById("new_priority").value;
+  var desc=document.getElementById("new_desc").value.trim();
+  var date=document.getElementById("new_date").value.trim();
+  var cost=document.getElementById("new_cost").value.trim();
+  additionCount++;
+  var tbody=document.getElementById("additions-list");
+  var ph=tbody.querySelector("tr td[colspan]");if(ph)ph.parentElement.remove();
+  var prioClass=prio==="High"?"priority-high":prio==="Medium"?"priority-medium":prio==="Low"?"priority-low":"";
+  var row=document.createElement("tr");
+  row.innerHTML=`<td><strong>${additionCount}</strong></td><td><span class="cat-badge">${catLabel}</span></td>
+    <td class="name-cell"><strong class="dname">${name}</strong>${desc?'<p class="dnotes">'+desc+'</p>':""}</td>
+    <td>${owner!=="— Select Owner —"?owner:"<em style='color:var(--muted)'>—</em>"}</td>
+    <td><span class="field-select ${prioClass}" style="display:inline-block;padding:3px 9px;border-radius:4px;font-size:12px;font-weight:600;border:1px solid #e2e8f0">${prio||"—"}</span></td>
+    <td>${date||"<em style='color:var(--muted)'>TBD</em>"}</td>
+    <td>${cost?"$"+cost:"<em style='color:var(--muted)'>TBD</em>"}</td>`;
+  tbody.appendChild(row);
+  ["new_name","new_desc","new_date","new_cost"].forEach(id=>document.getElementById(id).value="");
+  var msg=document.getElementById("submit_msg");msg.style.display="inline";setTimeout(()=>msg.style.display="none",3000);
+  row.scrollIntoView({behavior:"smooth",block:"center"});
+}
+// ── GANTT ─────────────────────────────────────────────────────────────────────
+
+const GANTT_START = new Date("2026-07-01");
+const GANTT_END   = new Date("2026-11-30");
+
+const ganttItems = [
+  // ── Brand & Marketing (amber) ───────────────────────────────
+  {id:"D02", name:"Brand Guideline Sign-off",   cat:"Design & Brand",  color:"#d97706", start:"2026-07-02", end:"2026-07-02", milestone:true},
+  {id:"D03", name:"Finalize Brand Guideline",    cat:"Design & Brand",  color:"#f59e0b", start:"2026-07-03", end:"2026-07-16"},
+  {id:"D04", name:"Website Mock-ups",            cat:"Design & Brand",  color:"#f59e0b", start:"2026-07-17", end:"2026-08-14"},
+  {id:"D05", name:"SIREXE Stand Design",         cat:"Design & Brand",  color:"#f59e0b", start:"2026-07-17", end:"2026-08-14"},
+  {id:"D06", name:"Website Development",         cat:"Design & Brand",  color:"#fbbf24", start:"2026-07-07", end:"2026-09-02"},
+  {id:"D07", name:"Event Print Materials",       cat:"Design & Brand",  color:"#fcd34d", start:"2026-08-15", end:"2026-09-30", tbd:true},
+  {id:"D08", name:"LinkedIn Page Launch",        cat:"Design & Brand",  color:"#fde68a", start:"2026-07-01", end:"2026-07-31", tbd:true},
+
+  // ── ERP Dev (blue) ──────────────────────────────────────────
+  {id:"E01", name:"UI/UX Bug-Fix Sprint",        cat:"ERP Dev",         color:"#3b82f6", start:"2026-07-01", end:"2026-07-31", tbd:true},
+  {id:"E02", name:"Database Refactoring",        cat:"ERP Dev",         color:"#3b82f6", start:"2026-07-15", end:"2026-08-15", tbd:true},
+  {id:"E03", name:"Internal Documentation",      cat:"ERP Dev",         color:"#60a5fa", start:"2026-07-01", end:"2026-07-31", tbd:true},
+  {id:"E04-E10", name:"Core ERP Features",       cat:"ERP Dev",         color:"#2563eb", start:"2026-08-01", end:"2026-09-30", tbd:true},
+  {id:"E14-E16", name:"Multi-Entity & FX",       cat:"ERP Dev",         color:"#1d4ed8", start:"2026-09-01", end:"2026-10-31", tbd:true},
+  {id:"E17-E19", name:"Tax & Compliance",        cat:"ERP Dev",         color:"#1e40af", start:"2026-10-01", end:"2026-11-30", tbd:true},
+
+  // ── Finance (green) ─────────────────────────────────────────
+  {id:"D01", name:"QuickBooks Setup",            cat:"Finance",         color:"#10b981", start:"2026-07-01", end:"2026-07-14"},
+  {id:"E11-E13", name:"Accounting Modules",      cat:"Finance",         color:"#34d399", start:"2026-07-15", end:"2026-09-30", tbd:true},
+
+  // ── Investor (purple) ────────────────────────────────────────
+  {id:"D09", name:"DocSend Data Room",           cat:"Investor",        color:"#8b5cf6", start:"2026-07-01", end:"2026-07-14"},
+  {id:"D10-D13", name:"Pitch Deck & Materials",  cat:"Investor",        color:"#a78bfa", start:"2026-07-15", end:"2026-08-31", tbd:true},
+
+  // ── Smartbox (red) ──────────────────────────────────────────
+  {id:"D14", name:"Hardware Procurement",        cat:"Smartbox",        color:"#ef4444", start:"2026-07-01", end:"2026-07-14"},
+  {id:"D15", name:"Assembly & Field Test",       cat:"Smartbox",        color:"#f87171", start:"2026-07-15", end:"2026-08-15", tbd:true},
+  {id:"E20-E21", name:"ERP Telemetry & CoC",     cat:"Smartbox",        color:"#fca5a5", start:"2026-08-01", end:"2026-09-30", tbd:true},
+
+  // ── Milestone ────────────────────────────────────────────────
+  {id:"SIREXE", name:"SIREXE Exhibition, Abidjan", cat:"Events",        color:"#f59e0b", start:"2026-11-18", end:"2026-11-18", milestone:true},
+];
+
+const DAY_PX = 7;  // pixels per day
+
+function dayOffset(dateStr) {
+  const d = new Date(dateStr);
+  return Math.round((d - GANTT_START) / 86400000);
+}
+function totalDays() {
+  return Math.round((GANTT_END - GANTT_START) / 86400000) + 1;
+}
+
+function buildGantt() {
+  const total = totalDays();
+  const chartW = total * DAY_PX;
+  const container = document.getElementById("gantt-container");
+  if (!container) return;
+
+  // ── Header: month labels ──────────────────────────────────────
+  let headerHTML = '<div class="gantt-header-row"><div class="gantt-label-col"></div><div class="gantt-months" style="width:' + chartW + 'px">';
+  const months = ["Jul 2026","Aug 2026","Sep 2026","Oct 2026","Nov 2026"];
+  const monthStarts = ["2026-07-01","2026-08-01","2026-09-01","2026-10-01","2026-11-01"];
+  const monthDays   = [31, 31, 30, 31, 30];
+  months.forEach((m, i) => {
+    const wPx = monthDays[i] * DAY_PX;
+    headerHTML += '<div class="gantt-month" style="width:' + wPx + 'px">' + m + '</div>';
+  });
+  headerHTML += '</div></div>';
+
+  // ── Week tick lines ───────────────────────────────────────────
+  let ticksHTML = '';
+  for (let d = 0; d < total; d += 7) {
+    ticksHTML += '<div class="gantt-tick" style="left:' + (d * DAY_PX) + 'px"></div>';
+  }
+
+  // ── Today line ────────────────────────────────────────────────
+  const todayOff = dayOffset(new Date().toISOString().split("T")[0]);
+  const todayHTML = todayOff >= 0 && todayOff <= total
+    ? '<div class="gantt-today" style="left:' + (todayOff * DAY_PX) + 'px"><span class="today-label">Today</span></div>'
+    : '';
+
+  // ── Rows ──────────────────────────────────────────────────────
+  let bodyHTML = '';
+  let lastCat = '';
+  ganttItems.forEach(item => {
+    if (item.cat !== lastCat) {
+      bodyHTML += '<div class="gantt-cat-header">' + item.cat + '</div>';
+      lastCat = item.cat;
+    }
+    const off = dayOffset(item.start);
+    const dur = item.milestone ? 0 : dayOffset(item.end) - off;
+    const left = off * DAY_PX;
+    const width = Math.max((dur + 1) * DAY_PX - 2, item.milestone ? 14 : 20);
+
+    let barClass = "gantt-bar" + (item.tbd ? " tbd" : "") + (item.milestone ? " milestone" : "");
+    let barStyle = item.milestone
+      ? `left:${left}px;width:14px;height:14px;top:50%;transform:translateY(-50%) rotate(45deg);border-radius:2px;background:${item.color}`
+      : `left:${left}px;width:${width}px;background:${item.color}`;
+
+    bodyHTML += `
+      <div class="gantt-row">
+        <div class="gantt-label-col" title="${item.name}">${item.id}: ${item.name}</div>
+        <div class="gantt-track" style="width:${chartW}px;position:relative">
+          ${ticksHTML}${todayHTML}
+          <div class="${barClass}" style="${barStyle}"
+               data-id="${item.id}" data-name="${item.name}"
+               data-start="${item.start}" data-end="${item.end}"
+               onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+            ${!item.milestone && width > 60 ? '<span class="bar-label">' + item.id + '</span>' : ''}
+          </div>
+        </div>
+      </div>`;
+  });
+
+  container.innerHTML = headerHTML + '<div class="gantt-body">' + bodyHTML + '</div>';
+
+  // Tooltip
+  const tip = document.createElement("div");
+  tip.id = "gantt-tip";
+  tip.className = "gantt-tip";
+  document.body.appendChild(tip);
+}
+
+function showTip(e, el) {
+  const tip = document.getElementById("gantt-tip");
+  tip.innerHTML = '<strong>' + el.dataset.id + ' — ' + el.dataset.name + '</strong><br>' +
+    el.dataset.start + (el.dataset.start !== el.dataset.end ? ' → ' + el.dataset.end : ' (milestone)');
+  tip.style.display = "block";
+  tip.style.left = (e.pageX + 12) + "px";
+  tip.style.top  = (e.pageY - 10) + "px";
+}
+function hideTip() {
+  const tip = document.getElementById("gantt-tip");
+  if (tip) tip.style.display = "none";
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+document.addEventListener("DOMContentLoaded",function(){
+  document.querySelectorAll(".priority-select").forEach(applyPriorityColor);
+});
+</script>
+</body>
+</html>
